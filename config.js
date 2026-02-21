@@ -1,3 +1,3 @@
 window.RAJA_CONFIG = {
-  sheetEndpoint: "https://script.google.com/macros/s/AKfycbw6myVHW0Vq2JIDoUvFuMAzFlIPJnP9tpSNNwVE6ZuPVSQod4jiqH1tz9_P1qqaxP2w/exec",
+  sheetEndpoint: "https://script.google.com/macros/s/AKfycbz-FkmUZAuaVDcQJrFIrywdaCNI4pGxNsjdQVQYMPvx4bnMuqu5Qr2-sOX8VYtEzeTw/exec",
 };
