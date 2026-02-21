@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeto Raja - Ciência Cidadã</title>
+  <link rel="icon" type="image/png" href="Logo_Raja.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="Logo_Raja.png" alt="Logo Raja" class="brand-logo" />
+      <div class="brand-copy">
+        <h1>Projeto Raja</h1>
+        <p>Laboratório de Chondrichthyes - UFRJ</p>
+      </div>
+    </div>
+    <img src="logo_chondrichthyes.png" alt="Logo do Laboratório de Chondrichthyes" class="lab-logo" />
+  </header>
+
+  <main class="container">
+    <section class="panel language-panel">
+      <div class="lang-title-wrap">
+        <h2 class="lang-title lang-pt">Idioma</h2>
+        <h2 class="lang-title lang-en hidden">Language</h2>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang-btn="pt" type="button" aria-label="Português">
+          <span>🇧🇷</span>
+          <span>Português</span>
+        </button>
+        <button class="lang-btn" data-lang-btn="en" type="button" aria-label="English">
+          <span>🇺🇸</span>
+          <span>English</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="tabs">
+      <button class="tab-btn active lang-pt" data-tab-btn="consent" type="button">1. Termo de Consentimento</button>
+      <button class="tab-btn active lang-en hidden" data-tab-btn="consent" type="button">1. Consent Form</button>
+      <button class="tab-btn lang-pt" data-tab-btn="observation" type="button">2. Observação</button>
+      <button class="tab-btn lang-en hidden" data-tab-btn="observation" type="button">2. Observation</button>
+    </section>
+
+    <section id="consentTab" class="panel tab-content active">
+      <section class="identity-box">
+        <h3 class="lang-pt">Identificação do participante</h3>
+        <h3 class="lang-en hidden">Participant identification</h3>
+
+        <div class="identity-grid">
+          <label class="lang-pt">Nome completo
+            <input type="text" id="consentName" required />
+          </label>
+          <label class="lang-en hidden">Full name
+            <input type="text" id="consentNameEn" required />
+          </label>
+
+          <label class="lang-pt">E-mail
+            <input type="email" id="consentEmail" required />
+          </label>
+          <label class="lang-en hidden">E-mail
+            <input type="email" id="consentEmailEn" required />
+          </label>
+        </div>
+      </section>
+
+      <article class="consent-text lang-pt">
+        <h2>TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO (TCLE)</h2>
+
+        <h3>1. Apresentação do Projeto</h3>
+        <p>Você está sendo convidado(a) a participar, de forma voluntária, do Projeto Raja, cujo objetivo é promover a identificação, monitoramento e conservação das raias brasileiras por meio da integração entre ciência cidadã e pesquisa científica.</p>
+
+        <h3>2. Objetivo da Pesquisa</h3>
+        <p>Esta pesquisa busca coletar informações e registros fotográficos que auxiliem na identificação de espécies e na análise de padrões de ocorrência, distribuição e tendências populacionais de raias no Brasil.</p>
+
+        <h3>3. Procedimentos</h3>
+        <p>A participação consiste em:</p>
+        <ul>
+          <li>Responder a um breve questionário;</li>
+          <li>Compartilhar fotografias voluntárias (ex.: registros de pesca, mergulho ou observação);</li>
+          <li>Informar dados associados às imagens, como data, local e observações relevantes.</li>
+        </ul>
+
+        <h3>4. Uso e Armazenamento dos Dados</h3>
+        <p>As informações e imagens fornecidas serão utilizadas exclusivamente para fins científicos e acadêmicos.</p>
+        <p>Os dados ficarão sob responsabilidade do Laboratório de Chondrichthyes, armazenados em banco de dados seguro, por tempo indeterminado.</p>
+        <p>Os dados não serão comercializados nem repassados a terceiros, exceto quando exigido por legislação ou por comitês regulatórios competentes.</p>
+
+        <h3>5. Confidencialidade</h3>
+        <p>A identidade dos participantes será mantida em sigilo. Em publicações, apresentações ou relatórios científicos decorrentes desta pesquisa:</p>
+        <ul>
+          <li>Não haverá identificação nominal dos participantes;</li>
+          <li>Os dados serão apresentados de forma agrupada e anonimizada;</li>
+          <li>Não haverá destaque individual das respostas fornecidas.</li>
+        </ul>
+
+        <h3>6. Riscos e Benefícios</h3>
+        <p>Eventuais riscos mínimos estão relacionados à exposição voluntária de informações dos dados dos espécimes, sendo adotadas medidas para garantir a proteção e confidencialidade dos dados pessoais dos voluntários.</p>
+        <p>Não há benefício direto ao participante; contudo, sua colaboração contribuirá para o avanço do conhecimento científico e para a conservação das raias brasileiras.</p>
+
+        <h3>7. Participação Voluntária</h3>
+        <p>Sua participação é totalmente voluntária. Você pode recusar-se a participar sem qualquer penalização ou prejuízo. Não há custos nem compensação financeira pela participação.</p>
+
+        <h3>8. Política para Exclusão de Dados</h3>
+        <p>Todos os participantes têm o direito de solicitar a exclusão de suas respostas e/ou imagens do banco de dados do projeto a qualquer momento, sem necessidade de justificativa.</p>
+        <p>Para isso, deverão entrar em contato com os responsáveis pelo projeto por meio dos canais oficiais informados no questionário. A exclusão será realizada no prazo máximo de 24 horas após a solicitação.</p>
+
+        <h3>DECLARAÇÃO DE CONSENTIMENTO</h3>
+        <p>Ao marcar a opção “Li e concordo”, declaro que fui devidamente informado(a) sobre os objetivos e procedimentos da pesquisa e concordo em participar voluntariamente.</p>
+      </article>
+
+      <article class="consent-text lang-en hidden">
+        <h2>FREE AND INFORMED CONSENT FORM (FICF)</h2>
+
+        <h3>1. Project Overview</h3>
+        <p>You are invited to voluntarily participate in Projeto Raja, whose objective is to promote the identification, monitoring, and conservation of Brazilian rays through the integration of citizen science and scientific research.</p>
+
+        <h3>2. Research Objective</h3>
+        <p>This research seeks to collect information and photographic records that assist in species identification and in the analysis of occurrence patterns, distribution, and population trends of rays in Brazil.</p>
+
+        <h3>3. Procedures</h3>
+        <p>Participation consists of:</p>
+        <ul>
+          <li>Completing a brief questionnaire;</li>
+          <li>Sharing voluntary photographs (e.g., fishing, diving, or observational records);</li>
+          <li>Providing data associated with the images, such as date, location, and relevant observations.</li>
+        </ul>
+
+        <h3>4. Data Use and Storage</h3>
+        <p>The information and images provided will be used exclusively for scientific and academic purposes.</p>
+        <p>The data will remain under the responsibility of the Laboratório de Chondrichthyes (UFRJ), stored in a secure database for an indefinite period.</p>
+        <p>The data will not be commercialized or shared with third parties, except when required by law or by competent regulatory committees.</p>
+
+        <h3>5. Confidentiality</h3>
+        <p>Participants identities will be kept confidential. In publications, presentations, or scientific reports resulting from this research:</p>
+        <ul>
+          <li>Participants will not be identified by name;</li>
+          <li>Data will be presented in aggregated and anonymized form;</li>
+          <li>Individual responses will not be highlighted.</li>
+        </ul>
+
+        <h3>6. Risks and Benefits</h3>
+        <p>Any minimal risks are related to the voluntary disclosure of specimen data information, and measures will be adopted to ensure the protection and confidentiality of volunteers personal data.</p>
+        <p>There is no direct benefit to participants; however, your collaboration will contribute to the advancement of scientific knowledge and to the conservation of Brazilian rays.</p>
+
+        <h3>7. Voluntary Participation</h3>
+        <p>Your participation is entirely voluntary. You may refuse to participate without any penalty or loss. There are no costs or financial compensation for participation.</p>
+
+        <h3>8. Data Removal Policy</h3>
+        <p>All participants have the right to request the deletion of their responses and/or images from the project database at any time, without the need for justification.</p>
+        <p>To do so, they must contact the project coordinators through the official channels provided in the questionnaire. Deletion will be carried out within a maximum of 24 hours after the request.</p>
+
+        <h3>CONSENT STATEMENT</h3>
+        <p>By selecting the option “I accept and agree,” I declare that I have been duly informed about the objectives and procedures of the research and voluntarily agree to participate.</p>
+      </article>
+
+      <div class="consent-action">
+        <label class="checkbox-row lang-pt">
+          <input id="consentCheckPt" type="checkbox" />
+          <span>Li e concordo</span>
+        </label>
+        <label class="checkbox-row lang-en hidden">
+          <input id="consentCheckEn" type="checkbox" />
+          <span>I accept and agree</span>
+        </label>
+        <button id="continueBtn" class="btn btn-primary" type="button" disabled>Continuar para observação</button>
+      </div>
+    </section>
+
+    <section id="observationTab" class="panel tab-content">
+      <div class="create-header">
+        <h2 class="lang-pt">Formulário de Observação</h2>
+        <h2 class="lang-en hidden">Observation Form</h2>
+        <p class="lang-pt">Sem login de usuário. O envio será feito para planilha (integração em andamento).</p>
+        <p class="lang-en hidden">No user login. Submission will be sent to a spreadsheet (integration in progress).</p>
+      </div>
+
+      <form id="observationForm" class="observation-form">
+        <label class="lang-pt">Nome popular
+          <input type="text" id="popularName" required />
+        </label>
+        <label class="lang-en hidden">Common name
+          <input type="text" id="popularNameEn" />
+        </label>
+
+        <label class="lang-pt">Nome científico
+          <input type="text" id="scientificName" required />
+        </label>
+        <label class="lang-en hidden">Scientific name
+          <input type="text" id="scientificNameEn" />
+        </label>
+
+        <label class="lang-pt">Local da observação
+          <input type="text" id="location" required />
+        </label>
+        <label class="lang-en hidden">Observation location
+          <input type="text" id="locationEn" />
+        </label>
+
+        <label class="lang-pt">Sexo do espécime
+          <select id="sex" required>
+            <option value="">Selecione</option>
+            <option value="Macho">Macho</option>
+            <option value="Fêmea">Fêmea</option>
+            <option value="Indeterminado">Indeterminado</option>
+          </select>
+        </label>
+        <label class="lang-en hidden">Specimen sex
+          <select id="sexEn">
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Undetermined">Undetermined</option>
+          </select>
+        </label>
+
+        <label class="lang-pt">Data e hora
+          <input type="datetime-local" id="observedAt" required />
+        </label>
+        <label class="lang-en hidden">Date and time
+          <input type="datetime-local" id="observedAtEn" />
+        </label>
+
+        <label class="full-width photo-field lang-pt">Fotos do espécime (uma ou mais)
+          <input type="file" id="photo" accept="image/*" multiple required />
+        </label>
+        <label class="full-width photo-field lang-en hidden">Specimen photos (one or more)
+          <input type="file" id="photoEn" accept="image/*" multiple />
+        </label>
+
+        <label class="full-width lang-pt">Observações adicionais
+          <textarea id="notes" rows="3"></textarea>
+        </label>
+        <label class="full-width lang-en hidden">Additional notes
+          <textarea id="notesEn" rows="3"></textarea>
+        </label>
+
+        <button class="btn btn-primary lang-pt" type="submit">Enviar</button>
+        <button class="btn btn-primary lang-en hidden" type="submit">Submit</button>
+      </form>
+
+      <p id="formFeedback" class="form-feedback"></p>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
+
