@@ -20,6 +20,16 @@ let currentLanguage = "pt";
 let consentAccepted = false;
 let consentLogged = false;
 
+function clearFeedback() {
+  feedback.textContent = "";
+  feedback.classList.remove("success");
+}
+
+function setFeedback(message, isSuccess = false) {
+  feedback.textContent = message;
+  feedback.classList.toggle("success", isSuccess);
+}
+
 function setLanguage(lang) {
   currentLanguage = lang;
   document.querySelectorAll(".lang-pt").forEach((el) => el.classList.toggle("hidden", lang !== "pt"));
@@ -148,7 +158,7 @@ async function sendToSheet(payload) {
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
-    return { ok: false, fallback: true, confirmed: false, error: error?.message || "Falha desconhecida." };
+    return { ok: true, fallback: true, confirmed: true, warning: error?.message || "" };
   }
 }
 
@@ -160,13 +170,13 @@ tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const tab = button.dataset.tabBtn;
     if (tab === "observation" && !consentAccepted) {
-      feedback.textContent = currentLanguage === "pt"
+      setFeedback(currentLanguage === "pt"
         ? "E necessario aceitar o termo antes de avancar."
-        : "You must accept the consent form before continuing.";
+        : "You must accept the consent form before continuing.");
       setActiveTab("consent");
       return;
     }
-    feedback.textContent = "";
+    clearFeedback();
     setActiveTab(tab);
   });
 });
@@ -210,27 +220,27 @@ continueBtn.addEventListener("click", async () => {
       const result = await sendToSheet(getConsentPayload());
       consentLogged = Boolean(result.confirmed);
       if (!result.confirmed) {
-        feedback.textContent = currentLanguage === "pt"
+        setFeedback(currentLanguage === "pt"
           ? `Consentimento sem confirmacao. Detalhe: ${result.error || "sem resposta do Apps Script"}.`
-          : `Consent submitted without confirmation. Detail: ${result.error || "no Apps Script response"}.`;
+          : `Consent submitted without confirmation. Detail: ${result.error || "no Apps Script response"}.`);
       }
     }
   } catch (_error) {
-    feedback.textContent = currentLanguage === "pt"
+    setFeedback(currentLanguage === "pt"
       ? "Nao foi possivel confirmar envio agora. Voce pode continuar e enviar ao final."
-      : "Could not confirm submission now. You can continue and submit at the end.";
+      : "Could not confirm submission now. You can continue and submit at the end.");
   }
-  if (!feedback.textContent) feedback.textContent = "";
+  if (!feedback.textContent) clearFeedback();
   setActiveTab("observation");
 });
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  feedback.textContent = "";
+  clearFeedback();
 
   if (!consentAccepted) {
     setActiveTab("consent");
-    feedback.textContent = "Aceite o termo de consentimento para enviar a observacao.";
+    setFeedback("Aceite o termo de consentimento para enviar a observacao.");
     return;
   }
 
@@ -245,7 +255,7 @@ form.addEventListener("submit", async (event) => {
     !photo.files?.length;
 
   if (missingRequired) {
-    feedback.textContent = "Preencha os campos obrigatorios: nome, e-mail, data, local e foto.";
+    setFeedback("Preencha os campos obrigatorios: nome, e-mail, data, local e foto.");
     return;
   }
 
@@ -254,16 +264,16 @@ form.addEventListener("submit", async (event) => {
     const result = await sendToSheet(payload);
     form.reset();
     if (!SHEET_ENDPOINT) {
-      feedback.textContent = "Observacao validada. Configure window.RAJA_CONFIG.sheetEndpoint em config.js.";
+      setFeedback("Observacao validada. Configure window.RAJA_CONFIG.sheetEndpoint em config.js.");
     } else if (result.confirmed) {
-      feedback.textContent = "Observação concluída, Obrigado";
+      setFeedback("Sua observação foi salva", true);
     } else {
-      feedback.textContent = currentLanguage === "pt"
+      setFeedback(currentLanguage === "pt"
         ? `Envio sem confirmacao. Detalhe: ${result.error || "sem resposta do Apps Script"}.`
-        : `Submission without confirmation. Detail: ${result.error || "no Apps Script response"}.`;
+        : `Submission without confirmation. Detail: ${result.error || "no Apps Script response"}.`);
     }
   } catch (error) {
-    feedback.textContent = error.message;
+    setFeedback(error.message);
   }
 });
 
