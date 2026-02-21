@@ -286,6 +286,18 @@ textarea {
   color: #3b478a;
 }
 
+.form-feedback.success {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  font-weight: 800;
+  color: #233184;
+  background: #ececff;
+  border: 1px solid #bfc2ff;
+  border-radius: 12px;
+}
+
 .hidden {
   display: none !important;
 }
