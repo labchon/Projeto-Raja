@@ -64,8 +64,7 @@ function doPost(e) {
         "photo_urls",
       ]);
 
-      const photoUrls = savePhotos_(payload.photos || [], requestId);
-      sheet.appendRow([
+      const rowValues = [
         requestId,
         new Date(),
         payload.language || "",
@@ -77,11 +76,29 @@ function doPost(e) {
         payload.sex || "",
         payload.observedAt || "",
         payload.notes || "",
-        Number(payload.photoCount || photoUrls.length || 0),
-        photoUrls.join(" | "),
-      ]);
+        Number(payload.photoCount || 0),
+        "PROCESSING",
+      ];
+      sheet.appendRow(rowValues);
+      const rowIndex = sheet.getLastRow();
 
-      log_(spreadsheet, requestId, "stored", "observation", `photosSaved=${photoUrls.length}`);
+      let photoUrls = [];
+      let photoError = "";
+      try {
+        photoUrls = savePhotos_(payload.photos || [], requestId);
+      } catch (err) {
+        photoError = String(err.message || err);
+        log_(spreadsheet, requestId, "photo_error", "observation", photoError);
+      }
+
+      const photoUrlsValue = photoError
+        ? `ERROR: ${photoError}`
+        : photoUrls.join(" | ");
+      const effectivePhotoCount = photoUrls.length || Number(payload.photoCount || 0);
+      sheet.getRange(rowIndex, 12).setValue(effectivePhotoCount);
+      sheet.getRange(rowIndex, 13).setValue(photoUrlsValue);
+
+      log_(spreadsheet, requestId, "stored", "observation", `photosSaved=${photoUrls.length}${photoError ? " with photo_error" : ""}`);
       return json_({
         ok: true,
         confirmed: true,
@@ -124,7 +141,6 @@ function savePhotos_(photos, requestId) {
 
     const blob = Utilities.newBlob(bytes, mime, filename);
     const file = folder.createFile(blob);
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
     savedUrls.push(file.getUrl());
   });
 

@@ -55,17 +55,17 @@
         <h3 class="lang-en hidden">Participant identification</h3>
 
         <div class="identity-grid">
-          <label class="lang-pt">Nome completo
+          <label class="lang-pt manual-required">Nome completo <span class="required-tag">(obrigat&oacute;rio)</span>
             <input type="text" id="consentName" required />
           </label>
-          <label class="lang-en hidden">Full name
+          <label class="lang-en hidden manual-required">Full name <span class="required-tag">(required)</span>
             <input type="text" id="consentNameEn" required />
           </label>
 
-          <label class="lang-pt">E-mail
+          <label class="lang-pt manual-required">E-mail <span class="required-tag">(obrigat&oacute;rio)</span>
             <input type="email" id="consentEmail" required />
           </label>
-          <label class="lang-en hidden">E-mail
+          <label class="lang-en hidden manual-required">E-mail <span class="required-tag">(required)</span>
             <input type="email" id="consentEmailEn" required />
           </label>
         </div>
@@ -178,34 +178,33 @@
       <div class="create-header">
         <h2 class="lang-pt">Formulário de Observação</h2>
         <h2 class="lang-en hidden">Observation Form</h2>
-        <p class="lang-pt">Sem login de usuário. O envio será feito para planilha (integração em andamento).</p>
-        <p class="lang-en hidden">No user login. Submission will be sent to a spreadsheet (integration in progress).</p>
+
       </div>
 
       <form id="observationForm" class="observation-form">
         <label class="lang-pt">Nome popular
-          <input type="text" id="popularName" required />
+          <input type="text" id="popularName" />
         </label>
         <label class="lang-en hidden">Common name
           <input type="text" id="popularNameEn" />
         </label>
 
         <label class="lang-pt">Nome científico
-          <input type="text" id="scientificName" required />
+          <input type="text" id="scientificName" />
         </label>
         <label class="lang-en hidden">Scientific name
           <input type="text" id="scientificNameEn" />
         </label>
 
-        <label class="lang-pt">Local da observação
+        <label class="lang-pt manual-required">Local da observação <span class="required-tag">(obrigat&oacute;rio)</span>
           <input type="text" id="location" required />
         </label>
-        <label class="lang-en hidden">Observation location
-          <input type="text" id="locationEn" />
+        <label class="lang-en hidden manual-required">Observation location <span class="required-tag">(required)</span>
+          <input type="text" id="locationEn" required />
         </label>
 
         <label class="lang-pt">Sexo do espécime
-          <select id="sex" required>
+          <select id="sex">
             <option value="">Selecione</option>
             <option value="Macho">Macho</option>
             <option value="Fêmea">Fêmea</option>
@@ -221,18 +220,18 @@
           </select>
         </label>
 
-        <label class="lang-pt">Data e hora
+        <label class="lang-pt manual-required">Data e hora <span class="required-tag">(obrigat&oacute;rio)</span>
           <input type="datetime-local" id="observedAt" required />
         </label>
-        <label class="lang-en hidden">Date and time
-          <input type="datetime-local" id="observedAtEn" />
+        <label class="lang-en hidden manual-required">Date and time <span class="required-tag">(required)</span>
+          <input type="datetime-local" id="observedAtEn" required />
         </label>
 
-        <label class="full-width photo-field lang-pt">Fotos do espécime (uma ou mais)
+        <label class="full-width photo-field lang-pt manual-required">Fotos do espécime (uma ou mais) <span class="required-tag">(obrigat&oacute;rio)</span>
           <input type="file" id="photo" accept="image/*" multiple required />
         </label>
-        <label class="full-width photo-field lang-en hidden">Specimen photos (one or more)
-          <input type="file" id="photoEn" accept="image/*" multiple />
+        <label class="full-width photo-field lang-en hidden manual-required">Specimen photos (one or more) <span class="required-tag">(required)</span>
+          <input type="file" id="photoEn" accept="image/*" multiple required />
         </label>
 
         <label class="full-width lang-pt">Observações adicionais
@@ -254,5 +253,10 @@
   <script src="app.js"></script>
 </body>
 </html>
+
+
+
+
+
 
 

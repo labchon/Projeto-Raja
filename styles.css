@@ -252,6 +252,30 @@ label {
   color: #2b3154;
 }
 
+label.lang-pt:not(.manual-required):has(input[required])::after,
+label.lang-pt:not(.manual-required):has(select[required])::after,
+label.lang-pt:not(.manual-required):has(textarea[required])::after {
+  content: " (obrigat\00F3rio)";
+  color: #c02828;
+  font-size: 0.88em;
+  font-weight: 800;
+}
+
+label.lang-en:not(.manual-required):has(input[required])::after,
+label.lang-en:not(.manual-required):has(select[required])::after,
+label.lang-en:not(.manual-required):has(textarea[required])::after {
+  content: " (required)";
+  color: #c02828;
+  font-size: 0.88em;
+  font-weight: 800;
+}
+
+.required-tag {
+  color: #c02828;
+  font-size: 0.88em;
+  font-weight: 800;
+}
+
 input,
 select,
 textarea {
@@ -320,3 +344,4 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
