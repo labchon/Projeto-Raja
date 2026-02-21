@@ -1,8 +1,8 @@
-const SPREADSHEET_ID = "14BRtvsM2dzg37cBFo_g6BXicWhTlQYrl3_klJ6OPtOs";
+const SPREADSHEET_ID = "1qrjivLRww78hlcLTgzmcy9JJt-pRTTlvR63oNs8n43U";
 const CONSENT_SHEET = "Consentimentos";
 const OBS_SHEET = "Observacoes";
 const LOG_SHEET = "Logs";
-const DRIVE_FOLDER_ID = "19eFQ7PXqnwVgfSoR9qNNxEMWSVwryL2h"; // opcional, pode deixar vazio
+const DRIVE_FOLDER_ID = "1vfAnXFoeShqLqyi-hbXKpZnfuDIKL1jo"; // opcional, pode deixar vazio
 
 function doGet(_e) {
   return json_({
