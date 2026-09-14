@@ -214,20 +214,32 @@ async function getObservationPayload() {
 }
 
 async function sendToSheet(payload) {
-  if (!SHEET_ENDPOINT) return { ok: true, mock: true };
+  if (!SHEET_ENDPOINT) {
+    throw new Error("Endpoint não configurado no config.js.");
+  }
 
   try {
-    // Apps Script frequentemente bloqueia CORS para leitura da resposta.
-    // Usamos um envio simples, sem preflight, e consideramos sucesso se a requisicao nao falhar em rede.
-    await fetch(SHEET_ENDPOINT, {
+    const response = await fetch(SHEET_ENDPOINT, {
       method: "POST",
-      mode: "no-cors",
+      // Removendo o mode: "no-cors" para o script conseguir ler a resposta
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
-    return { ok: true, confirmed: true, requestId: "" };
+
+    // Converte a resposta do Google (que é um JSON) para objeto
+    const result = await response.json();
+
+    // Se o backend retornar ok: false, disparamos o erro na tela
+    if (!result.ok) {
+      throw new Error(result.error || "O servidor recusou o salvamento.");
+    }
+
+    // Retorna o resultado real (confirmed: true) para a interface
+    return result;
+
   } catch (error) {
-    throw new Error(`Falha de rede no envio: ${error?.message || "sem resposta"}.`);
+    // Se houver falha de CORS, limite de 50MB ou erro no script, cai aqui
+    throw new Error(`Erro na comunicação: ${error.message}`);
   }
 }
 
