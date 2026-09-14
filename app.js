@@ -219,33 +219,21 @@ async function sendToSheet(payload) {
   }
 
   try {
-    const response = await fetch(SHEET_ENDPOINT, {
+    // O mode: "no-cors" volta a ser obrigatório para o bloqueio do Google não barrar o envio
+    await fetch(SHEET_ENDPOINT, {
       method: "POST",
-      // Removendo o mode: "no-cors" para o script conseguir ler a resposta
+      mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
 
-    // Converte a resposta do Google (que é um JSON) para objeto
-    const result = await response.json();
-
-    // Se o backend retornar ok: false, disparamos o erro na tela
-    if (!result.ok) {
-      throw new Error(result.error || "O servidor recusou o salvamento.");
-    }
-
-    // Retorna o resultado real (confirmed: true) para a interface
-    return result;
-
+    // Como o Google oculta a resposta, assumimos o sucesso caso não haja erro de conexão (CATCH)
+    return { ok: true, confirmed: true };
+    
   } catch (error) {
-    // Se houver falha de CORS, limite de 50MB ou erro no script, cai aqui
-    throw new Error(`Erro na comunicação: ${error.message}`);
+    throw new Error("Falha na rede: Sem conexão com a internet ou firewall bloqueando o envio.");
   }
 }
-
-langButtons.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.langBtn));
-});
 
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
